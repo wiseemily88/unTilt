@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "As a registered HR Admin user" do
- let(:admin) { create(:admin_user)  }
+  let(:admin) { create(:admin_user)  }
 
-  it "I can log in" do
+  scenario "I can log in" do
     visit root_path
 
     fill_in "email", with: "#{admin.email}"
@@ -13,35 +13,14 @@ RSpec.describe "As a registered HR Admin user" do
     expect(current_path).to eq(admin_dashboard_path)
   end
 
-  it "I can create a new admin account" do
-    visit new_user_path
+  scenario "I can log out" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-    fill_in "user[email]", with: "admin@gamil.com"
-    fill_in "user[password]", with: "password"
-    fill_in "user[first_name]", with: "admin_1"
-    fill_in "user[last_name]", with: "admin"
-    fill_in "user[job_title]", with: "HR Business Partner"
-    fill_in "user[department]", with: "People Operations"
-    click_on 'Submit'
+    visit admin_dashboard_path
+    click_on 'Logout'
 
-    admin = User.last
-
-    expect(current_path).to eq(admin_dashboard_path)
-    expect(page).to have_content("Welcome #{admin.email}")
-    expect(admin.role).to eq("admin")
-    expect(admin.role).to_not eq("interviewer")
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content("Login")
   end
-
-
- it "I can log out" do
-   allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-
-   visit root_path
-
-   click_on 'Logout'
-
-   expect(current_path).to eq(root_path)
-   expect(page).to have_content("Login")
- end
 
 end
