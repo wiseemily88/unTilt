@@ -11,9 +11,10 @@ class UsersController <ApplicationController
     @user.role = 1
 
     if @user.save
-      flash[:success] = "Logged in as #{@user.email}"
+      
+      flash[:success] = "Welcome #{@user.email}"
       session[:user_id] = @user.id
-      redirect_to '/admin_dashboard'
+      redirect_to admin_dashboard_path
     else
       render :new
       flash[:danger] = "Try again! Information is wrong."
@@ -23,6 +24,6 @@ class UsersController <ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :first_name, :last_name, :job_title, :department)
+    params.require(:user).permit(:email, :first_name, :last_name, :job_title, :department, :password)
   end
 end

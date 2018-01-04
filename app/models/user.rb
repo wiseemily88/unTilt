@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_secure_password
 
   validates :email, presence: true, uniqueness: true
-  validates :first_name, :last_name, :job_title, :department, presence: true
+  validates :first_name, :last_name, :job_title, :department, :password, presence: true
 
   enum role: ["interviewer", "admin"]
   enum gender: ["male", "female", "transgender_female", "transgender_male", "gender_variant"]

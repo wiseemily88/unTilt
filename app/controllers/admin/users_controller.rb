@@ -10,7 +10,6 @@ class Admin::UsersController <ApplicationController
 
     if @user.save
       flash[:success] = "Created a new #{@user.first_name}"
-
       redirect_to '/dashboard'
     else
       render :new
