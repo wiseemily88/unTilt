@@ -11,7 +11,6 @@ class UsersController <ApplicationController
     @user.role = 1
 
     if @user.save
-      
       flash[:success] = "Welcome #{@user.email}"
       session[:user_id] = @user.id
       redirect_to admin_dashboard_path
