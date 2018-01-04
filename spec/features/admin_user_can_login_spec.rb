@@ -25,7 +25,6 @@ RSpec.describe "As a registered HR Admin user" do
     click_on 'Submit'
 
     admin = User.last
-  
 
     expect(current_path).to eq(admin_dashboard_path)
     expect(page).to have_content("Welcome #{admin.email}")
@@ -34,8 +33,11 @@ RSpec.describe "As a registered HR Admin user" do
   end
 
 
- xit "I can log out" do
-   login_user(admin.email, admin.password)
+ it "I can log out" do
+   allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+   visit root_path
+
    click_on 'Logout'
 
    expect(current_path).to eq(root_path)
