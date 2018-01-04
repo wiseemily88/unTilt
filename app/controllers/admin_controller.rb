@@ -6,5 +6,5 @@ class AdminController <ApplicationController
   end
 
   def index
-  end  
+  end
 end

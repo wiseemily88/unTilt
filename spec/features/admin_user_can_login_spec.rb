@@ -5,21 +5,16 @@ RSpec.describe "As a registered HR Admin user" do
 
   it "I can log in" do
     visit root_path
+
+    fill_in "email", with: "#{admin.email}"
+    fill_in "password", with: "#{admin.password}"
     click_on 'Login'
 
-    expect(current_path).to eq(login_path)
-
-    fill_in "session[email]", with: "#{admin.email}"
-    fill_in "session[password]", with: "#{admin.password}"
-
-    within(".action") do
-     click_on("Login")
-
-     expect(current_path).to eq(dashboard_index_path)
-    end
+    expect(current_path).to eq(admin_dashboard_path)
+    
   end
 
- it "I can log out" do
+ xit "I can log out" do
    login_user(admin.email, admin.password)
    click_on 'Logout'
 

@@ -1,0 +1,44 @@
+<%= form_for @user, :html => {:class => "form-horizontal center"} do |f| %>
+
+      <div class="form-group">
+        <%= f.label :first_name, "First name:", class: "col-md-4 control-label" %>
+        <div class="col-md-8">
+          <%= f.text_field :first_name, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :last_name, "Last name:", class: "col-md-4 control-label" %>
+        <div class="col-md-8">
+          <%= f.text_field :last_name, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :email, "Email:", class: "col-md-4 control-label" %>
+        <div class="col-md-8">
+          <%= f.text_field :email, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password, "Password:", class: "col-md-4 control-label" %>
+        <div class="col-md-8">
+          <%= f.password :password, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :job_title, "Job_title:", class: "col-md-4 control-label" %>
+        <div class="col-md-8">
+          <%= f.text_field :job_title, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :department, "Department:", class: "col-md-4 control-label" %>
+          <div class="col-md-8">
+            <%= f.text_field :Department, class: "form-control" %>
+          </div>
+
+      <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
+ <% end %>
