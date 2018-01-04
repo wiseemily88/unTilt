@@ -1,0 +1,27 @@
+class SessionsController < ApplicationController
+
+  def new
+  end
+
+  def create
+    user = User.find_by(email: params[:email])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      flash[:success] = "Logged in as #{user.first_name}"
+      if user.admin?
+        redirect_to '/admin/dashboard'
+      else
+        redirect_to '/dashboard'
+      end
+    else
+      render :new
+      flash[:warning] = "Something went wrong! Please try again"
+    end
+  end
+
+  def destroy
+    session.clear
+    redirect_to login_path
+  end
+
+end
