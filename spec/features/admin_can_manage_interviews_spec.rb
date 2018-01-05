@@ -10,10 +10,10 @@ RSpec.describe "As a registered HR Admin user" do
       visit admin_dashboard_path
 
         click_on "Manage Interviewers"
-        expect(current_path).to eq(admin_users_path)
+        expect(current_path).to eq(admin_interviews_path)
 
 
         expect(users.count).to eq(5)
     end
   end
-end  
+end
