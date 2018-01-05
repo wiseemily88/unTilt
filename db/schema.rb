@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20180105043937) do
   create_table "interviews", force: :cascade do |t|
     t.date "date"
     t.integer "score"
-    t.integer "status"
+    t.integer "status", default: 0
     t.bigint "user_id"
     t.bigint "candidate_id"
     t.datetime "created_at", null: false
