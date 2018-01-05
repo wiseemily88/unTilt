@@ -1,0 +1,13 @@
+<h1> Here are the Open and Completed Interviews </h1>
+
+
+  <% @interviews.each do |interview| %>
+  <ul>
+    <li> candidate's first_name: <%= interview.candidate.first_name %> </li>
+    <li> candidate's last_name: <%= interview.candidate.last_name %> </li>
+    <li> Date: <%= interview.date %> </li>
+    <li> Role: <%= interview.candidate.target_role %> </li>
+    <li> Interviewer: <%= interview.user.first_name %> </li>
+    <li> Status: <%= interview.status %> </li>
+    </ul>
+  <%end %>
