@@ -1,0 +1,12 @@
+<h1> Here are the current Availble Interviewers </h1>
+
+
+  <% @users.each do |user| %>
+  <ul>
+    <li> first_name: <%= user.first_name %> </li>
+    <li> last_name: <%= user.last_name %> </li>
+    <li> email: <%= link_to "#{user.email}", admin_user_path(user) %> </li>
+    <li> Job Title: <%= user.job_title %> </li>
+    <li> Department: <%= user.department %> </li>
+    </ul>
+  <%end %>
