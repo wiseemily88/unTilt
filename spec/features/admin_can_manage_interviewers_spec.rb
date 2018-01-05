@@ -16,17 +16,44 @@ RSpec.describe "As a registered HR Admin user" do
         expect(users.count).to eq(5)
     end
 
-    it "Can click on an interviewer to view their show page" do
+    it "I can click on an interviewer to view their show page" do
       user_1 = create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit admin_users_path
 
       click_on "#{user_1.email}"
 
       expect(current_path).to eq(admin_user_path(user_1))
       expect(page).to have_content("#{user_1.first_name}")
-      save_and_open_page
+
     end
 
+    it "I can add a new Interviewer to the application" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit admin_users_path
+
+      click_on "Add a New Interviewer"
+
+      expect(current_path).to eq(new_admin_user_path)
+
+      fill_in "user[email]", with: "EvanX@gamil.com"
+      fill_in "user[password]", with: "password"
+      fill_in "user[first_name]", with: "Evan"
+      fill_in "user[last_name]", with: "Xanthos"
+      fill_in "user[job_title]", with: "Technical Manager"
+      fill_in "user[department]", with: "Research and Development"
+      click_on 'Submit'
+
+  
+
+      new_user = User.last
+
+      expect(current_path).to eq(admin_users_path)
+      expect(page).to have_content(new_user.first_name)
+      expect(new_user.role).to eq("interviewer")
+      expect(new_user.role).to_not eq("admin")
+    end
 
   end
 end

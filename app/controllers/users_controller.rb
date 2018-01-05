@@ -9,7 +9,6 @@ class UsersController <ApplicationController
   def create
     @user = User.new(user_params)
     @user.role = 1
-
     if @user.save
       flash[:success] = "Welcome #{@user.email}"
       session[:user_id] = @user.id
