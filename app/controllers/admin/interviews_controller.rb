@@ -5,5 +5,12 @@ class Admin::InterviewsController <ApplicationController
 
   def show
     @interview = Interview.find(params[:id])
-  end  
+  end
+
+  def new
+    @interviewers_options = User.all.map{ |u| [ u.first_name, u.id ] }
+    @candidates_options = Candidate.all.map{ |u| [ u.first_name, u.id ] }
+    @interview = Interview.new
+  end
+
 end

@@ -31,31 +31,32 @@ RSpec.describe "As a registered HR Admin user" do
 
     end
 
-    xit "I can add a new Interviewer to the application" do
+    it "I can create a new Interview" do
+      candidate = create(:candidate)
+      interviewers = create_list(:user,5)
+      interviewer_1_name = interviewers.last.first_name
+      candidate_name = candidate.first_name
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-      visit admin_users_path
+      visit admin_interviews_path
 
-      click_on "Add a New Interviewer"
+      click_on "Create a New Interview"
 
-      expect(current_path).to eq(new_admin_user_path)
+      expect(current_path).to eq(new_admin_interview_path)
+      save_and_open_page
 
-      fill_in "user[email]", with: "EvanX@gamil.com"
-      fill_in "user[password]", with: "password"
-      fill_in "user[first_name]", with: "Evan"
-      fill_in "user[last_name]", with: "Xanthos"
-      fill_in "user[job_title]", with: "Technical Manager"
-      fill_in "user[department]", with: "Research and Development"
+      fill_in "interview[date]", with: "12/1/2018"
+      select "#{interviewer_1_name}", from: 'interview_candidate_id'
+      select "#{candidate_name}", from: 'interview_user_id'
       click_on 'Submit'
 
+      new_interview = Interview.last
 
+      expect(current_path).to eq(admin_interviews_path)
+      expect(page).to have_content(new_interview.date)
+      expect(new_interview.status).to eq("open")
 
-      new_user = User.last
-
-      expect(current_path).to eq(admin_users_path)
-      expect(page).to have_content(new_user.first_name)
-      expect(new_user.role).to eq("interviewer")
-      expect(new_user.role).to_not eq("admin")
     end
 
 
