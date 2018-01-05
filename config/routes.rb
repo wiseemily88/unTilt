@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/dashboard' => :index
     resources :users, only: [:new, :create, :index, :show]
-    resources :interviews, only: [:index]
+    resources :interviews, only: [:index, :show, :new, :create]
   end
 
   resources :users, only: [:new, :create]
