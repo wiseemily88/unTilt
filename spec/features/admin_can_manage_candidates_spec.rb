@@ -30,7 +30,6 @@ RSpec.describe "As a registered HR Admin user" do
 
 
       click_on "Show Details"
-        save_and_open_page
 
       expect(current_path).to eq(admin_candidate_path(candidate))
       expect(page).to have_content("#{candidate.first_name}")
@@ -43,36 +42,28 @@ RSpec.describe "As a registered HR Admin user" do
     end
   end
 
-
-
-    xit "I can create a new Interview" do
-      candidate = create(:candidate)
-      interviewers = create_list(:user,5)
-      interviewer_1_name = interviewers.last.first_name
-      candidate_name = candidate.first_name
+    it "I can create a new Candidate" do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       visit admin_candidates_path
 
-      click_on "Create a New Interview"
+      click_on "Create a New Candidate"
 
-      expect(current_path).to eq(new_admin_interview_path)
+      expect(current_path).to eq(new_admin_candidate_path)
 
 
-      fill_in "interview[date]", with: "12/1/2018"
-      select "#{candidate_name}", :from => "interview_candidate_id"
-      select "#{interviewer_1_name}", from: 'interview_user_id'
+      fill_in "candidate[first_name]", with: "Evan"
+      fill_in "candidate[last_name]", with: "Xanthos"
+      fill_in "candidate[target_role]", with: "Surgical PA"
       click_on 'Submit'
 
-      new_interview = Interview.last
+      new_candidate = Candidate.last
 
-      expect(current_path).to eq(admin_interviews_path)
-      expect(page).to have_content(new_interview.date)
-      expect(new_interview.status).to eq("open")
-
+      expect(current_path).to eq(admin_candidates_path)
+      expect(page).to have_content(new_candidate.first_name)
+      expect(page).to have_content(new_candidate.last_name)
+      expect(page).to have_content(new_candidate.target_role)
     end
-
-
   end
 end

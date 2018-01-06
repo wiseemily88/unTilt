@@ -1,0 +1,25 @@
+<%= form_for ([:admin, @candidate]), :html => {:class => "form-horizontal center"} do |f| %>
+
+<div class="form-group">
+  <%= f.label :first_name, "First Name:", class: "col-md-4 control-label" %>
+  <div class="col-md-4">
+    <%= f.text_field :first_name, class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :last_name, "Last Name:", class: "col-md-4 control-label" %>
+  <div class="col-md-4">
+    <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :target_role, "Targeted Role:", class: "col-md-4 control-label" %>
+  <div class="col-md-4">
+    <%= f.text_field :target_role, class: "form-control" %>
+  </div>
+</div>
+
+<%= f.submit "Submit", class: "btn btn-default btn-primary" %>
+<% end %>
