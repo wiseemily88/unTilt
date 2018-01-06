@@ -44,11 +44,11 @@ RSpec.describe "As a registered HR Admin user" do
       click_on "Create a New Interview"
 
       expect(current_path).to eq(new_admin_interview_path)
-      save_and_open_page
+
 
       fill_in "interview[date]", with: "12/1/2018"
-      select "#{interviewer_1_name}", from: 'interview_candidate_id'
-      select "#{candidate_name}", from: 'interview_user_id'
+      select "#{candidate_name}", :from => "interview_candidate_id"
+      select "#{interviewer_1_name}", from: 'interview_user_id'
       click_on 'Submit'
 
       new_interview = Interview.last
