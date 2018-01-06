@@ -1,0 +1,12 @@
+<h1> Here are the Current Candidate </h1>
+
+
+  <% @candidates.each do |candidate| %>
+  <ul>
+    <li> <%= link_to "Show Details", admin_candidate_path(candidate.id) %> </li>
+    <li> candidate's first_name: <%= candidate.first_name %> </li>
+    <li> candidate's last_name: <%= candidate.last_name %> </li>
+    <li> Role: <%= candidate.target_role %> </li>
+    </ul>
+  <%end %>
+  

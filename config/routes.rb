@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get '/dashboard' => :index
     resources :users, only: [:new, :create, :index, :show]
     resources :interviews, only: [:index, :show, :new, :create]
+    resources :candidates, only: [:index, :show]
   end
 
   resources :users, only: [:new, :create]
