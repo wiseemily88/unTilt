@@ -17,5 +17,15 @@ FactoryBot.define do
       department { Faker::Job.field }
       role 1
     end
+
+
+    factory :interviewer_with_multiple_upcoming_interviews, class: User do
+     after(:create) do |user|
+       create(:interview, user: user)
+       create(:interview, user: user)
+       create(:interview, user: user)
+       create(:completed_interview, user: user)
+     end
+   end
   end
 end

@@ -1,0 +1,14 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%@user.job_title%></li>
+    <li class="list-group-item"><%@user.department%></li>
+    <li class="list-group-item"><%@user.email%></li>
+  </ul>
+  <div class="card-body">
+    <a href= "/interviews" class="card-link">Upcoming Interviews</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>

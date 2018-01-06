@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:new, :create]
+  resources :interviews, only: [:edit, :update, :index]
 end

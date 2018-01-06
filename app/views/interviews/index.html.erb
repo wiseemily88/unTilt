@@ -1,0 +1,11 @@
+<h1> Here are your upcoming Interviews </h1>
+
+
+  <% @interviews.each do |interview| %>
+  <ul>
+    <li> candidate's first_name: <%= interview.candidate.first_name %> </li>
+    <li> candidate's last_name: <%= interview.candidate.last_name %> </li>
+    <li> Date: <%= interview.date %> </li>
+    <li> Role: <%= interview.candidate.target_role %> </li>
+    </ul>
+  <%end %>
