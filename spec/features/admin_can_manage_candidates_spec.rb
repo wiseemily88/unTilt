@@ -18,20 +18,32 @@ RSpec.describe "As a registered HR Admin user" do
       expect(all_candidates.count).to eq(5)
     end
 
-    it "I can click on a candidate for the details" do
+    context "I can see candidate and interview details" do
+      it "I can click on a candidate for the details" do
       candidate = create(:candidate)
+      interviewer = create(:user)
+      Interview.create!(date: "12/1/2018", candidate_id: candidate.id, user_id: interviewer.id)
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       visit admin_candidates_path
 
+
       click_on "Show Details"
+        save_and_open_page
 
       expect(current_path).to eq(admin_candidate_path(candidate))
       expect(page).to have_content("#{candidate.first_name}")
       expect(page).to have_content("#{candidate.last_name}")
       expect(page).to have_content("#{candidate.target_role}")
+      expect(page).to have_content("#{candidate.interviews.first.date}")
+      expect(page).to have_content("#{candidate.interviews.first.status}")
+      expect(page).to have_content("#{candidate.interviews.first.user.first_name}")
 
     end
+  end
+
+
 
     xit "I can create a new Interview" do
       candidate = create(:candidate)

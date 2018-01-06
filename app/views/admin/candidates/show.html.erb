@@ -1,3 +1,12 @@
 
 <h4> Candidate Name <%=@candidate.first_name%> <%=@candidate.last_name%></h4>
 <h4> Target Role <%=@candidate.target_role%> </h4>
+
+<% @candidate.interviews.map do |interview| %>
+<h5> Interviews </h5>
+<ul>
+  <li> Date: <%=interview.date%> </li>
+  <li> Status: <%=interview.status%> </li>
+  <li> Interviewers: <%=interview.user.first_name%> <%=interview.user.last_name%></li>
+<%end%>
+</ul>
