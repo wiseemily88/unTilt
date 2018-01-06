@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
+  has_many :interviews
 
   validates :email, presence: true, uniqueness: true
   validates :first_name, :last_name, :job_title, :department, :password, presence: true
