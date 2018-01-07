@@ -28,9 +28,7 @@ RSpec.describe "As a registered Interviewer" do
 
       click_on "#{selected_interview.id}"
 
-
       expect(current_path).to eq(edit_interview_path(selected_interview))
-      save_and_open_page
 
       fill_in "interview[score]", with: 3
       fill_in "interview[comment]", with: "We should extend an offer. Fits the values."

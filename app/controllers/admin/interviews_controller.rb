@@ -16,6 +16,9 @@ class Admin::InterviewsController <ApplicationController
   def create
     interview = Interview.new(interview_params)
     interview.status = 0
+    interviewer = User.find_by(params[:user_id])
+    InterviewNotifierMailer.inform(interviewer, interview, interviewer.email).deliver_now
+  
 
     if interview.save
       flash[:success] = "Created a new for the follwing date: #{interview.date}"
@@ -23,7 +26,7 @@ class Admin::InterviewsController <ApplicationController
     else
       render :new
       flash[:danger] = "Try again! Information is wrong."
-    end  
+    end
   end
 
   private
