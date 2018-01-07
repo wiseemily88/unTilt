@@ -5,4 +5,7 @@ class Interview < ApplicationRecord
   enum status: ["open", "completed"]
 
   validates :date, presence: true
+
+   scope :open, -> { where(status: 0)}
+   scope :completed, -> { where(status: 1)}
 end

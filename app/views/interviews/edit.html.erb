@@ -1,0 +1,30 @@
+<%= form_for ([ @interview]), :html => {:class => "form-horizontal center"} do |f| %>
+
+<div class="form-group">
+  <label for="staticCanditate" class="col-sm-2 col-form-label">Candidate</label>
+  <div class="col-sm-4">
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value= "<%"#{@interview.candidate.first_name}" "#{@interview.candidate.last_name}"%>">
+  </div>
+
+  <label for="staticCanditate" class="col-sm-2 col-form-label">Date</label>
+  <div class="col-sm-4">
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value= "<%"#{@interview.date}"%>">
+  </div>
+
+  <label for="staticCanditate" class="col-sm-2 col-form-label">Role</label>
+  <div class="col-sm-4">
+    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value= "<%"#{@interview.candidate.target_role}"%>">
+  </div>
+
+  <%= f.label :score, "Interview Score:", class: "col-md-4 control-label" %>
+  <div class="col-md-4">
+    <%= f.text_field :score, class: "form-control" %>
+  </div>
+  <%= f.label :comment, "Overall Comment:", class: "col-md-4 control-label" %>
+  <div class="col-md-4">
+    <%= f.text_area :comment, class: "form-control" %>
+  </div>
+</div>
+
+<%= f.submit "Submit", class: "btn btn-default btn-primary" %>
+<% end %>

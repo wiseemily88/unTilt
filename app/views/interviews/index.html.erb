@@ -3,6 +3,7 @@
 
   <% @interviews.each do |interview| %>
   <ul>
+    <li> <%= link_to interview.id, edit_interview_path(interview .id) %> </li>
     <li> candidate's first_name: <%= interview.candidate.first_name %> </li>
     <li> candidate's last_name: <%= interview.candidate.last_name %> </li>
     <li> Date: <%= interview.date %> </li>
