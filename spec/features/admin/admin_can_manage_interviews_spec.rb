@@ -71,7 +71,5 @@ RSpec.describe "As a registered HR Admin user" do
       expect(new_interview.status).to eq("open")
 
     end
-
-
   end
 end

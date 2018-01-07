@@ -25,6 +25,7 @@
     <% @attributes.each do |attribute| %>
       <li> <%=attribute.name%> </li>
       <li> <%=attribute.description%> </li> <br>
+      <%= link_to "Edit an Attribute", edit_admin_attribute_path(attribute) %>
     <%end%>
       </ul>
   <%= button_to "Create a New Attribute", new_admin_attribute_path, method: :get, form_class: "btn btn-info"%>

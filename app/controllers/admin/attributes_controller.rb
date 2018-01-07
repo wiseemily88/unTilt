@@ -16,9 +16,21 @@ class Admin::AttributesController <ApplicationController
       end
   end
 
+  def edit
+    @attribute = Attribute.find(params[:id])
+  end
+
+  def update
+    @attribute = Attribute.find(params[:id])
+    @attribute = Attribute.update(attribute_params)
+    redirect_to admin_dashboard_path
+
+  end
+
+
   private
   def attribute_params
     params.require(:attribute).permit(:name,:description)
-  end  
+  end
 
 end
