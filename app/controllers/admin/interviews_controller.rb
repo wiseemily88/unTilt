@@ -18,7 +18,8 @@ class Admin::InterviewsController <ApplicationController
     interview.status = 0
     interviewer = User.find_by(params[:user_id])
     InterviewNotifierMailer.inform(interviewer, interview, interviewer.email).deliver_now
-  
+    flash[:notice] = "Successfully sent request to interviewer for upcoming interview."
+
 
     if interview.save
       flash[:success] = "Created a new for the follwing date: #{interview.date}"

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/dashboard' => :index
-    post 'notification' => 'notification#create'
+    # post 'notification' => 'notification#create'
     resources :users, only: [:new, :create, :index, :show]
     resources :interviews, only: [:index, :show, :new, :create]
     resources :candidates, only: [:index, :show, :new, :create]
