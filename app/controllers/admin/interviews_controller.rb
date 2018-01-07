@@ -10,6 +10,7 @@ class Admin::InterviewsController <ApplicationController
   def new
     @interviewers_options = User.all.map{ |u| [ u.first_name, u.id ] }
     @candidates_options = Candidate.all.map{ |u| [ u.first_name, u.id ] }
+    @attributes = Attribute.all
     @interview = Interview.new
   end
 

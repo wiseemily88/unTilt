@@ -34,8 +34,15 @@ RSpec.describe "As a registered HR Admin user" do
     it "I can create a new Interview" do
       candidate = create(:candidate)
       interviewers = create_list(:user,5)
+      attributes = create_list(:attribute, 4)
+
       interviewer_1_name = interviewers.last.first_name
       candidate_name = candidate.first_name
+
+      attribute_1 = attributes.last.name
+      attribute_2 = attributes.first.name
+      attribute_3 = attributes[1].name
+      attribute_4 = attributes[2].name
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
@@ -49,6 +56,12 @@ RSpec.describe "As a registered HR Admin user" do
       fill_in "interview[date]", with: "12/1/2018"
       select "#{candidate_name}", :from => "interview_candidate_id"
       select "#{interviewer_1_name}", from: 'interview_user_id'
+
+      select "#{attribute_1}", from: 'id_attribute'
+      select "#{attribute_2}", from: 'id_attribute'
+      select "#{attribute_3}", from: 'id_attribute'
+      select "#{attribute_4}", from: 'id_attribute'
+
       click_on 'Submit'
 
       new_interview = Interview.last

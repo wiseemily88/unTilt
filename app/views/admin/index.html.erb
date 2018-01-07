@@ -20,6 +20,16 @@
 
 <div class="card-body">
   <h2 class="card-title">Welcome Admin, <%= current_user.first_name %></h2>
+  <h4> Here are all the current attributes: </h4>
+  <ul>
+    <% @attributes.each do |attribute| %>
+      <li> <%=attribute.name%> </li>
+      <li> <%=attribute.description%> </li> <br>
+    <%end%>
+      </ul>
+  <%= button_to "Create a New Attribute", new_admin_attribute_path, method: :get, form_class: "btn btn-info"%>
+
   <%= button_to "Logout", logout_path, method: :delete, data: { confirm: "Are you sure?" }, form_class: "btn btn-info"%>
+
 
 </div>

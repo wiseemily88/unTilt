@@ -6,6 +6,7 @@ class AdminController <ApplicationController
   end
 
   def index
+    @attributes = Attribute.all
   end
 
 end

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :users, only: [:new, :create, :index, :show]
     resources :interviews, only: [:index, :show, :new, :create]
     resources :candidates, only: [:index, :show, :new, :create]
+    resources :attributes, only: [:new, :create]
   end
 
   resources :users, only: [:new, :create]
