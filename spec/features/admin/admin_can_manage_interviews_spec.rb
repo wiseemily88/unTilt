@@ -32,7 +32,7 @@ RSpec.describe "As a registered HR Admin user" do
 
     end
 
-    xit "I can create a new Interview" do
+    it "I can create a new Interview" do
       candidate = create(:candidate)
       interviewers = create_list(:user,5)
       competencies = create_list(:competency, 4)
@@ -40,10 +40,10 @@ RSpec.describe "As a registered HR Admin user" do
       interviewer_1_name = interviewers.last.first_name
       candidate_name = candidate.first_name
 
-      attribute_1 = attributes.last.name
-      attribute_2 = attributes.first.name
-      attribute_3 = attributes[1].name
-      attribute_4 = attributes[2].name
+      competency_1 = competencies.last.name
+      competency_2 = competencies.first.name
+      competency_3 = competencies[1].name
+      competency_4 = competencies[2].name
 
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
@@ -53,15 +53,21 @@ RSpec.describe "As a registered HR Admin user" do
       click_on "Create a New Interview"
 
       expect(current_path).to eq(new_admin_interview_path)
+    
 
 
       fill_in "interview[date]", with: "12/1/2018"
       select "#{candidate_name}", :from => "interview_candidate_id"
       select "#{interviewer_1_name}", from: 'interview_user_id'
-      select "#{attribute_1}", :from => "id_attribute[]"
-      select "#{attribute_2}", :from => "id_attribute[]"
-      select "#{attribute_3}", :from => "id_attribute[]"
-      select "#{attribute_4}", :from => "id_attribute[]"
+
+      within('.checkbox') do
+      find("input[type='checkbox'][id='#{competency_1}']").set(true)
+      find("input[type='checkbox'][id='#{competency_2}']").set(true)
+      find("input[type='checkbox'][id='#{competency_3}']").set(true)
+      find("input[type='checkbox'][id='#{competency_4}']").set(true)
+    end
+
+
 
       click_on 'Submit'
 

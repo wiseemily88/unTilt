@@ -18,14 +18,17 @@
   <%= f.select(:user_id,   @interviewers_options) %>
 </div>
 
-  <ul>
-  <% @attributes.each do |attribute| %>
+  <div class="checkbox" id="competencies_id">
+    <ul>
+    <% hidden_field_tag 'interview[competency_ids][]', nil %>
+  <% @competencies.each do |competency| %>
       <li>
-        <%= check_box_tag 'attribute_ids[]', attribute.id, :id => "attribute_#{attribute.id}" -%>
-        <%= h attribute.name -%>
+        <%= check_box_tag 'interview[competency_ids][]', competency.id, @interview.competency_ids.include?(competency.id), id: competency.name%>
+        <%= label_tag competency.name, competency.name%>
       </li>
   <% end %>
 </ul>
+</div>
 
 
 <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
