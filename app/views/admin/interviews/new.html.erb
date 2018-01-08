@@ -18,14 +18,16 @@
   <%= f.select(:user_id,   @interviewers_options) %>
 </div>
 
+  <ul>
+  <% @attributes.each do |attribute| %>
+      <li>
+        <%= check_box_tag 'attribute_ids[]', attribute.id, :id => "attribute_#{attribute.id}" -%>
+        <%= h attribute.name -%>
+      </li>
+  <% end %>
+</ul>
 
-<select id="id_attribute" class="mdb-select colorful-select dropdown-primary" multiple="multiple" name="interview[attribute_id][]">
 
-  <%@attributes.each do |attribute| %>
-      <option value="<%attribute.id%>"><%=attribute.name%></option>
-        <%= f.hidden_field :attribute_id, params[:attribute] %>
-    <%end %>
-  </select>
 <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
 <% end %>
 <%= debug params %>
