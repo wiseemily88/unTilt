@@ -6,6 +6,7 @@ RSpec.describe "As a registered HR Admin user" do
     scenario "I can see all closed and open interviews" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       create_list(:interview, 5)
+
       create(:completed_interview)
 
       visit admin_dashboard_path
@@ -44,6 +45,7 @@ RSpec.describe "As a registered HR Admin user" do
       attribute_3 = attributes[1].name
       attribute_4 = attributes[2].name
 
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       visit admin_interviews_path
@@ -56,11 +58,10 @@ RSpec.describe "As a registered HR Admin user" do
       fill_in "interview[date]", with: "12/1/2018"
       select "#{candidate_name}", :from => "interview_candidate_id"
       select "#{interviewer_1_name}", from: 'interview_user_id'
-
-      select "#{attribute_1}", from: 'id_attribute'
-      select "#{attribute_2}", from: 'id_attribute'
-      select "#{attribute_3}", from: 'id_attribute'
-      select "#{attribute_4}", from: 'id_attribute'
+      select "#{attribute_1}", :from => "id_attribute[]"
+      select "#{attribute_2}", :from => "id_attribute[]"
+      select "#{attribute_3}", :from => "id_attribute[]"
+      select "#{attribute_4}", :from => "id_attribute[]"
 
       click_on 'Submit'
 

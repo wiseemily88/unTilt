@@ -16,13 +16,13 @@ class Admin::InterviewsController <ApplicationController
 
   def create
     interview = Interview.new(interview_params)
+    byebug
     interview.status = 0
     interviewer = User.find_by(params[:user_id])
     InterviewNotifierMailer.inform(interviewer, interview, interviewer.email).deliver_now
     flash[:notice] = "Successfully sent request to interviewer for upcoming interview."
-
-
     if interview.save
+      byebug
       flash[:success] = "Created a new for the follwing date: #{interview.date}"
       redirect_to admin_interviews_path
     else
@@ -33,7 +33,7 @@ class Admin::InterviewsController <ApplicationController
 
   private
     def interview_params
-      params.require(:interview).permit(:date, :user_id, :candidate_id)
+      params.require(:interview).permit(:date, :user_id, :candidate_id, :attribute_id)
     end
 
 end

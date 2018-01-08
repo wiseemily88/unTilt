@@ -17,10 +17,15 @@
   <%= f.label :interview_id %>
   <%= f.select(:user_id,   @interviewers_options) %>
 </div>
-<select id="id_attribute" class="mdb-select colorful-select dropdown-primary" multiple="multiple" name="id_attribute[]">
+
+
+<select id="id_attribute" class="mdb-select colorful-select dropdown-primary" multiple="multiple" name="interview[attribute_id][]">
+
   <%@attributes.each do |attribute| %>
-      <option value="1"><%=attribute.name%></option>
+      <option value="<%attribute.id%>"><%=attribute.name%></option>
+        <%= f.hidden_field :attribute_id, params[:attribute] %>
     <%end %>
   </select>
 <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
 <% end %>
+<%= debug params %>
