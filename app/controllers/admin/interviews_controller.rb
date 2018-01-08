@@ -18,9 +18,17 @@ class Admin::InterviewsController <ApplicationController
 
     @interview = Interview.new(interview_params)
     @interview.status = 0
-    attributes = params[:attribute_ids]
-    attribute_hash = Hash[ *attributes.collect { |v| [ v, f(v) ] }.flatten ]
-    @interview.attributes = attribute_hash
+    first_selected = Attribute.find(params[:attribute_ids][0])
+
+    second_selected = Attribute.find(params[:attribute_ids][1])
+    third_selected = Attribute.find(params[:attribute_ids][2])
+    fourth_selected = Attribute.find(params[:attribute_ids][3])
+    @interview.attribute_1=first_selected.id.to_s
+    @interview.attribute_2 =second_selected.id.to_s
+    @interview.attribute_3 =third_selected.id.to_s
+    @interview.attribute_4 =fourth_selected.id.to_s
+      byebug
+
 
 
     interviewer = User.find_by(params[:user_id])
@@ -28,7 +36,7 @@ class Admin::InterviewsController <ApplicationController
     flash[:notice] = "Successfully sent request to interviewer for upcoming interview."
     if interview.save
       byebug
-      flash[:success] = "Created a new for the follwing date: #{interview.date}"
+      flash[:success] = "Created a new for the following date: #{interview.date}"
       redirect_to admin_interviews_path
     else
       render :new
