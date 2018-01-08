@@ -10,7 +10,7 @@ class Admin::InterviewsController <ApplicationController
   def new
     @interviewers_options = User.all.map{ |u| [ u.first_name, u.id ] }
     @candidates_options = Candidate.all.map{ |u| [ u.first_name, u.id ] }
-    @attributes = Attribute.all
+    # @attributes = Attribute.all
     @interview = Interview.new
   end
 
@@ -18,16 +18,16 @@ class Admin::InterviewsController <ApplicationController
 
     @interview = Interview.new(interview_params)
     @interview.status = 0
-    first_selected = Attribute.find(params[:attribute_ids][0])
+    # first_selected = Attribute.find(params[:attribute_ids][0])
+    #
+    # second_selected = Attribute.find(params[:attribute_ids][1])
+    # third_selected = Attribute.find(params[:attribute_ids][2])
+    # fourth_selected = Attribute.find(params[:attribute_ids][3])
+    # @interview.attribute_1=first_selected.id.to_s
+    # @interview.attribute_2 =second_selected.id.to_s
+    # @interview.attribute_3 =third_selected.id.to_s
+    # @interview.attribute_4 =fourth_selected.id.to_s
 
-    second_selected = Attribute.find(params[:attribute_ids][1])
-    third_selected = Attribute.find(params[:attribute_ids][2])
-    fourth_selected = Attribute.find(params[:attribute_ids][3])
-    @interview.attribute_1=first_selected.id.to_s
-    @interview.attribute_2 =second_selected.id.to_s
-    @interview.attribute_3 =third_selected.id.to_s
-    @interview.attribute_4 =fourth_selected.id.to_s
-      byebug
 
 
 

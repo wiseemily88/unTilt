@@ -5,13 +5,7 @@ FactoryBot.define do
     status 0
     user
     candidate
-
-    association :attribute_1, factory: :attribute
-    attribute_2 { attribute_1 }
-    attribute_3 { attribute_1 }
-    attribute_4 { attribute_1 }
-
-
+  
 
     factory :completed_interview, class: Interview do
       date { Faker::Date.forward(60) }
@@ -19,10 +13,7 @@ FactoryBot.define do
       status 1
       user
       candidate
-      association :attribute_1, factory: :attribute
-      attribute_2 { attribute_1 }
-      attribute_3 { attribute_1 }
-      attribute_4 { attribute_1 }
+
 
     end
   end

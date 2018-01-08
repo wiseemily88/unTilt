@@ -32,10 +32,10 @@ RSpec.describe "As a registered HR Admin user" do
 
     end
 
-    it "I can create a new Interview" do
+    xit "I can create a new Interview" do
       candidate = create(:candidate)
       interviewers = create_list(:user,5)
-      attributes = create_list(:attribute, 4)
+      competencies = create_list(:competency, 4)
 
       interviewer_1_name = interviewers.last.first_name
       candidate_name = candidate.first_name

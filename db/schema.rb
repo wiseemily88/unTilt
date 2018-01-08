@@ -10,17 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180107234354) do
+ActiveRecord::Schema.define(version: 20180108214247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "attributes", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "candidates", force: :cascade do |t|
     t.string "first_name"
@@ -28,6 +21,20 @@ ActiveRecord::Schema.define(version: 20180107234354) do
     t.string "target_role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "competencies", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "interview_competencies", force: :cascade do |t|
+    t.bigint "interview_id"
+    t.bigint "competency_id"
+    t.index ["competency_id"], name: "index_interview_competencies_on_competency_id"
+    t.index ["interview_id"], name: "index_interview_competencies_on_interview_id"
   end
 
   create_table "interviews", force: :cascade do |t|
@@ -39,10 +46,6 @@ ActiveRecord::Schema.define(version: 20180107234354) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "comment"
-    t.integer "attribute_1"
-    t.integer "attribute_2"
-    t.integer "attribute_3"
-    t.integer "attribute_4"
     t.index ["candidate_id"], name: "index_interviews_on_candidate_id"
     t.index ["user_id"], name: "index_interviews_on_user_id"
   end
@@ -64,6 +67,8 @@ ActiveRecord::Schema.define(version: 20180107234354) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "interview_competencies", "competencies"
+  add_foreign_key "interview_competencies", "interviews"
   add_foreign_key "interviews", "candidates"
   add_foreign_key "interviews", "users"
 end
