@@ -1,7 +1,7 @@
 class UsersController <ApplicationController
   def show
     @user = current_user
-    byebug
+    #I keep getting a nil 
   end
 
   def new
