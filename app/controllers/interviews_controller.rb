@@ -2,7 +2,6 @@ class InterviewsController < ApplicationController
 
   def index
     @interviews = Interview.open
-
   end
 
   def edit

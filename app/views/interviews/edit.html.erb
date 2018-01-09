@@ -16,6 +16,16 @@
     <input type="text" readonly class="form-control-plaintext" id="staticEmail" value= "<%"#{@interview.candidate.target_role}"%>">
   </div>
 
+<label for="staticCanditate" class="col-sm-4 col-form-label">Competency</label>
+  <%@interview.competencies.each do |competency| %>
+  <div class="col-sm-4">
+    <input type="text" readonly class="form-control-plaintext" id="staticompetency" value= "<%"#{competency.name}"%>">
+    <input type="text" readonly class="form-control-plaintext" id="staticompetency" value= "<%"#{competency.description}"%>">
+  </div>
+  <%end%>
+</label>
+
+
   <%= f.label :score, "Interview Score:", class: "col-md-4 control-label" %>
   <div class="col-md-4">
     <%= f.text_field :score, class: "form-control" %>

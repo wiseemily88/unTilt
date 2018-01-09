@@ -22,14 +22,17 @@ RSpec.describe "As a registered Interviewer" do
 
     scenario "I can complete one open interview" do
       selected_interview = user.interviews.first
+      competencies = selected_interview.competencies
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit interviews_path
 
       click_on "#{selected_interview.id}"
+      save_and_open_page
 
       expect(current_path).to eq(edit_interview_path(selected_interview))
+      expect(page).to have_content(competencies.first.name)
 
       fill_in "interview[score]", with: 3
       fill_in "interview[comment]", with: "We should extend an offer. Fits the values."

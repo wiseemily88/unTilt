@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180108214247) do
+ActiveRecord::Schema.define(version: 20180109034903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20180108214247) do
   create_table "interview_competencies", force: :cascade do |t|
     t.bigint "interview_id"
     t.bigint "competency_id"
+    t.integer "competency_score"
     t.index ["competency_id"], name: "index_interview_competencies_on_competency_id"
     t.index ["interview_id"], name: "index_interview_competencies_on_interview_id"
   end
