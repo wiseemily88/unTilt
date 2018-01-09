@@ -21,7 +21,8 @@ RSpec.describe "As a registered HR Admin user" do
     end
 
     it "I can click on an interview the details" do
-      interview = create(:interview)
+      interview = create(:interview_with_competencies)
+      competencies = interview.competencies
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
       visit admin_interviews_path
 
@@ -29,6 +30,9 @@ RSpec.describe "As a registered HR Admin user" do
 
       expect(current_path).to eq(admin_interview_path(interview))
       expect(page).to have_content("#{interview.candidate.first_name}")
+      expect(page).to have_content("#{interview.user.first_name}")
+      expect(page).to have_content("#{competencies.first.name}")
+
 
     end
 
@@ -53,7 +57,7 @@ RSpec.describe "As a registered HR Admin user" do
       click_on "Create a New Interview"
 
       expect(current_path).to eq(new_admin_interview_path)
-    
+
 
 
       fill_in "interview[date]", with: "12/1/2018"
@@ -66,7 +70,6 @@ RSpec.describe "As a registered HR Admin user" do
       find("input[type='checkbox'][id='#{competency_3}']").set(true)
       find("input[type='checkbox'][id='#{competency_4}']").set(true)
     end
-
 
 
       click_on 'Submit'
