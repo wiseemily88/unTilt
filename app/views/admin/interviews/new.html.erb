@@ -24,7 +24,7 @@
   <% @competencies.each do |competency| %>
       <li>
         <%= check_box_tag 'interview[competency_ids][]', competency.id, @interview.competency_ids.include?(competency.id), id: competency.name%>
-        <%= label_tag competency.name, competency.name%>
+        <%= label_tag :competency_id, competency.name%>
       </li>
   <% end %>
 </ul>
