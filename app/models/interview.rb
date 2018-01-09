@@ -4,6 +4,7 @@ class Interview < ApplicationRecord
   belongs_to :user
   belongs_to :candidate
   accepts_nested_attributes_for :interview_competencies
+  accepts_nested_attributes_for :competencies
 
   enum status: ["open", "completed"]
 

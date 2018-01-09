@@ -16,12 +16,12 @@
 </div>
 
 <div class="form-group">
-<% @interview.competencies.each do |competency| %>
-  <%= f.label :name, competency.name, class:"col-sm-4 col-form-label" %>
-  <%= f.text_field :description, value: competency.description, class: "form-control", :readonly => true  %>
-      <%= competency.interview_competencies.each do |interview_competency| %>
-        <%= f.label :competency_score, "Competency Score:", class:"col-sm-2 col-form-label" %>
-        <%= f.text_field :competency_score, class: "form-control" %>
+  <%= f.fields_for :competencies do |builder| %>
+  <%= builder.label :name, class:"col-sm-4 col-form-label" %>
+  <%= builder.text_field :name, class: "col-sm-4", :readonly => true  %>
+  <%= builder.fields_for :interview_competencies do |lb| %>
+        <%= lb.label :competency_score, "Competency Score:", class:"col-sm-6 col-form-label" %>
+        <%= lb.text_field :competency_score, class: "form-control" %>
       <%end%>
 <%end%>
 </div>

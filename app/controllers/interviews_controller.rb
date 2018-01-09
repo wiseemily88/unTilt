@@ -2,10 +2,13 @@ class InterviewsController < ApplicationController
 
   def index
     @interviews = Interview.open
+
   end
 
   def edit
     @interview = Interview.find(params[:id])
+    competency = @interview.competencies.build
+    competency.interview_competencies.build
   end
 
   def update
