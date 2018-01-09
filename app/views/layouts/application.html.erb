@@ -6,9 +6,13 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"%>
+
   </head>
 
-  <body>
+  <body class="fixed skin-purple-light">
+    
+
     <% flash.each do |type, message| %>
       <%= content_tag :div, sanitize(message), class: [type, "alert", "alert-#{type}"] %>
     <% end %>

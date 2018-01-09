@@ -1,30 +1,37 @@
-<%= form_for ([ @interview]), :html => {:class => "form-horizontal center"} do |f| %>
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4">
+        <p>  Date: <%=@interview.date %> </p>
+        <p>  First Name: <%=@interview.candidate.first_name %> </p>
+        <p>  Last Name: <%=@interview.candidate.last_name %> </p>
+        <p>  Target Role: <%=@interview.candidate.target_role %> </p>
+      </div>
+    </div>
+</div>
 
-
-<div class="form-group">
-  <%=f.label :date, "Date", class:"col-sm-4 col-form-label" %>
-  <%= f.text_field :date, class: "col-sm-4", :readonly => true %>
+<div class="row">
+  <div class="col-sm-3">
+    <p> Competency Name: </p>
+    <p> Competency Description: </p>
   </div>
-
-<div class="form-group">
-  <%= f.label :first_name, "First Name", class:"col-sm-4 col-form-label" %>
-  <%= f.text_field :first_name, value: @interview.candidate.first_name, class: "col-sm-4", :readonly => true  %>
-  <%= f.label :last_name, "Last Name", class:"col-sm-4 col-form-label" %>
-  <%= f.text_field :Last_name, value: @interview.candidate.last_name, class: "col-sm-4", :readonly => true %>
-  <%= f.label :last_name, "Targeted Role" , class:"col-sm-4 col-form-label"%>
-  <%= f.text_field :target_role, value: @interview.candidate.target_role, class: "col-sm-4", :readonly => true  %>
+  <%@interview.competencies.each do |competency| %>
+  <div class="col-sm-3">
+    <p><%= competency.name %></p>
+    <p><%= competency.description %></p>
+  </div>
+  <%end%>
 </div>
-
-<div class="form-group">
-  <%= f.fields_for :competencies do |builder| %>
-  <%= builder.label :name, class:"col-sm-4 col-form-label" %>
-  <%= builder.text_field :name, class: "col-sm-4", :readonly => true  %>
-  <%= builder.fields_for :interview_competencies do |lb| %>
-        <%= lb.label :competency_score, "Competency Score:", class:"col-sm-6 col-form-label" %>
-        <%= lb.text_field :competency_score, class: "form-control" %>
+  <%= form_for ([ @interview]), :html => {:class => "form-horizontal center"} do |f| %>
+    <div class="row">
+      <div class="col-sm-3">
+        <p> Competency Score: </p>
+      </div>
+      <%= f.fields_for :interview_competencies do |builder| %>
+        <div class="col-sm-3">
+      <%= builder.text_field :competency_score, class: "form-control" %>
+      </div>
       <%end%>
-<%end%>
-</div>
+    </div>
 
 <div class="form-group">
   <%=f.label :score, "Interview Score:", class:"col-sm-2 col-form-label" %>
@@ -32,7 +39,7 @@
   <%= f.text_field :score, class: "form-control"%>
   </div>
   <%= f.label :comment, "Overall Comment:", class: "col-md-4 control-label" %>
-  <div class="col-md-4">
+  <div class="col-md-6">
     <%= f.text_area :comment, class: "form-control" %>
   </div>
 </div>

@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    #current_user method working here
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
@@ -12,7 +11,6 @@ class SessionsController < ApplicationController
       if user.admin?
         redirect_to admin_dashboard_path
       else
-        #it is getting here with the form- so password is being authenticated
         redirect_to dashboard_path
 
       end

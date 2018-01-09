@@ -19,9 +19,8 @@ RSpec.describe "As a registered HR Admin user" do
     visit admin_dashboard_path
     click_on 'Logout'
 
-
     expect(current_path).to eq(root_path)
-    
+
   end
 
 end
