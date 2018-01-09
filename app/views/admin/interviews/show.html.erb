@@ -1,6 +1,8 @@
 <h2> Details for <%=@interview.date%> </h2>
 <h4> Candidate <%=@interview.candidate.first_name%> </h4>
 <h4> Interviewer <%=@interview.user.first_name%> </h4>
+<h4> Status <%=@interview.status%> </h4>
+<p><%= link_to "Edit", edit_admin_interview_path(@interview) %></p>
   <ul>
  <%@interview.competencies.each do |competency| %>
  <li> Competency: <%=competency.name%> </li>

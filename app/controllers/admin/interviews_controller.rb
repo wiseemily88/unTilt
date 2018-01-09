@@ -30,9 +30,23 @@ class Admin::InterviewsController <ApplicationController
     end
   end
 
+  def edit
+    @interview = Interview.find(params[:id])
+    @interviewers_options = User.all.map{ |u| [ u.first_name, u.id ] }
+  end
+
+  def update
+    @interview = Interview.find(params[:id])
+    @interview = Interview.update(interview_params)
+
+    flash[:success] = "Updated the interview for the following candidate: #{@interview.first.candidate.first_name}"
+    redirect_to admin_interviews_path
+  end
+
+
   private
     def interview_params
-      params.require(:interview).permit(:date, :user_id, :candidate_id, :competency_ids => [])
+      params.require(:interview).permit(:date, :user_id, :candidate_id, :status, :competency_ids => [])
     end
 
 

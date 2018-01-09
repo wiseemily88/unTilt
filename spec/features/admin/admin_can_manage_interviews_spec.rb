@@ -32,6 +32,7 @@ RSpec.describe "As a registered HR Admin user" do
       expect(page).to have_content("#{interview.candidate.first_name}")
       expect(page).to have_content("#{interview.user.first_name}")
       expect(page).to have_content("#{competencies.first.name}")
+      expect(page).to have_content("#{interview.status}")
 
 
     end
@@ -81,5 +82,29 @@ RSpec.describe "As a registered HR Admin user" do
       expect(new_interview.status).to eq("open")
 
     end
+
+    scenario "I can edit an open interview" do
+      interview = create(:interview_with_competencies)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+      interviewers = create_list(:user,5)
+
+      interviewer_2_name = interviewers.first.first_name
+
+      visit admin_interview_path(interview)
+
+      click_on "Edit"
+
+      expect(current_path).to eq(edit_admin_interview_path(interview))
+
+      fill_in "interview[date]", with: "2/4/2018"
+      fill_in "interview[status]", with: "completed"
+      select "#{interviewer_2_name}", from: 'interview_user_id'
+      click_on 'Submit'
+
+      expect(current_path).to eq(admin_interviews_path)
+      expect(page).to have_content("2018-04-02")
+      expect(page).to have_content("completed")
+    end
+
   end
 end
