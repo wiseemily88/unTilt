@@ -1,7 +1,7 @@
 class UsersController <ApplicationController
   def show
     @user = current_user
-    #I keep getting a nil 
+    #I keep getting a nil here
   end
 
   def new
