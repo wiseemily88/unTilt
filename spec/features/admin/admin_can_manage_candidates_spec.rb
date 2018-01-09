@@ -19,14 +19,8 @@ RSpec.describe "As a registered HR Admin user" do
     end
 
     context "I can see candidate and interview details" do
-      xit "I can click on a candidate for the details" do
-      candidate = create(:candidate)
-      interviewer = create(:user)
-      attribute_1 = create(:attribute)
-      attribute_2 = create(:attribute)
-      attribute_3 = create(:attribute)
-      attribute_4 = create(:attribute)
-      Interview.create!(date: "12/1/2018", candidate_id: candidate.id, user_id: interviewer.id, attribute_1: attribute_1, attribute_2: attribute_2, attribute_3: attribute_3, attribute_4: attribute_4)
+      it "I can click on a candidate for the details" do
+      candidate = create(:candidate_with_upcoming_interview)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 

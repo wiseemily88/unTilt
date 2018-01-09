@@ -13,6 +13,7 @@ FactoryBot.define do
       status 1
       user
       candidate
+    end
 
       factory :interview_with_competencies, class: Interview do
         after(:create) do |interview|
@@ -22,5 +23,5 @@ FactoryBot.define do
      end
 
     end
-  end
+
 end

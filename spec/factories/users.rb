@@ -21,10 +21,10 @@ FactoryBot.define do
 
     factory :interviewer_with_multiple_upcoming_interviews, class: User do
      after(:create) do |user|
-       create(:interview, user: user)
-       create(:interview, user: user)
-       create(:interview, user: user)
-       create(:completed_interview, user: user)
+       create(:interview_with_competencies, user: user)
+       create(:interview_with_competencies, user: user)
+       create(:interview_with_competencies, user: user)
+       create(:interview_with_competencies, user: user)
      end
    end
   end

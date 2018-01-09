@@ -11,6 +11,7 @@ RSpec.describe "As a registered Interviewer" do
       visit dashboard_path
 
       click_on "Upcoming Interviews"
+
       interviews = user.interviews
 
       expect(current_path).to eq(interviews_path)
@@ -21,7 +22,7 @@ RSpec.describe "As a registered Interviewer" do
 
     scenario "I can complete one open interview" do
       selected_interview = user.interviews.first
-  
+
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit interviews_path
