@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
 
   def create
     #current_user method working here
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
+    user = User.find_by(email: params[:session][:email])
+    if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       flash[:success] = "Logged in as #{user.first_name}"
       if user.admin?

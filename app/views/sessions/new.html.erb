@@ -1,15 +1,22 @@
 <div class="container">
-
-
   <div class="row" id="pwd-container">
-    <div class="col-md-4"></div>
-
     <div class="col-md-4">
-      <section class="login-form">
-        <form method="post"  action="/login" role="login">
-          <%=image_tag("15358fc5-7576-4cb9-af25-ba86067241b3.png", class: "img-responsive", id: "navbar-logo")  %>
-          <input type="email" name="email" placeholder="Email" required class="form-control input-lg" value="joestudent@gmail.com" />
-          <input type="password" class="form-control input-lg" name="password" placeholder="Password" required="" />
-          <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Login</button>
-        </form>
+        <%= form_for :session, url: login_path, :html => {:class => "form-horizontal center"} do |f|  %>
+        <%=image_tag("15358fc5-7576-4cb9-af25-ba86067241b3.png", class: "img-responsive", id: "navbar-logo")  %>
+        <div class="form-group">
+        <%= f.label :email, class: "col-md-4 control-label" %>
+        <div class="col-md-8">
+        <%= f.text_field :email, value: "em@gmail.com", class: "form-control" %>
+      </div>
+    </div>
+      <div class="form-group">
+        <%= f.label :password, class: "col-md-4 control-label" %>
+      <div class="col-md-8">
+        <%= f.password_field :password,class: "form-control"  %>
+        <%= f.submit "Login", class: "btn btn-default btn-primary" %>
+      </div>
+    </div>
+        <% end  %>
+    </div>
+    </div>
 </div>
