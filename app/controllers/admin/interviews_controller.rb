@@ -36,13 +36,12 @@ class Admin::InterviewsController <ApplicationController
   end
 
   def update
-    @interview = Interview.find(params[:id])
-    @interview = Interview.update(interview_params)
+    interview = Interview.find(params[:id])
+    interview.update(interview_params)
 
-    flash[:success] = "Updated the interview for the following candidate: #{@interview.first.candidate.first_name}"
+    flash[:success] = "Updated the interview for the following candidate: #{interview.candidate.first_name}"
     redirect_to admin_interviews_path
   end
-
 
   private
     def interview_params

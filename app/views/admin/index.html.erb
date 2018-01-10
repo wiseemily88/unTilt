@@ -14,23 +14,26 @@
         <li class="nav-item">
           <a class="nav-link active" href="/admin/candidates">Manage Candidates</a>
         </li>
-
       </ul>
-    </div
+    </div>
 
-<div class="card-body">
-  <h2 class="card-title">Welcome Admin, <%= current_user.first_name %></h2>
-  <h4> Here are all the current competencies: </h4>
-  <ul>
+  <h4 class="card-title">Welcome Admin, <%= current_user.first_name %></h4>
+  <h5> Here are all the current competencies: </h5>
+
     <% @competencies.each do |competency| %>
-      <li> <%=competency.name%> </li>
-      <li> <%=competency.description%> </li> <br>
-      <%= link_to "Edit an Competency", edit_admin_competency_path(competency) %>
+    <div class="card-deck">
+    <div class= "card p-3 text-left">
+        <div class="card-block">
+          <h6 class="card-title"> Name: <%=competency.name%></h6>
+          <h6 class="card-text">Description: <%=competency.description%> </h6>
+      <a ><%= link_to "Edit", edit_admin_competency_path(competency) %></a>
+      <a ><%= link_to "Delete", admin_competency_path(competency), method: :delete, data: { confirm: "Are you sure?" } %> </a><br>
+      </div>
+    </div>
+      </div>
     <%end%>
-      </ul>
-  <%= button_to "Create a New Competency", new_admin_competency_path, method: :get, form_class: "btn btn-info"%>
-
-  <%= button_to "Logout", logout_path, method: :delete, data: { confirm: "Are you sure?" }, form_class: "btn btn-info"%>
-
-
+    <div class="card-footer">
+  <%= button_to "Create a New Competency", new_admin_competency_path, method: :get, class: "btn btn-primary"%><br>
+  <%= button_to "Logout", logout_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary"%>
+</div>
 </div>

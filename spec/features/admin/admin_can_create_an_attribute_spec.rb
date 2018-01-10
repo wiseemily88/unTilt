@@ -42,7 +42,7 @@ RSpec.describe "As a registered HR Admin user" do
       expect(page).to have_content(competency.name)
       expect(page).to have_content(competency.description)
 
-      click_on "Edit an Competency"
+      click_on "Edit"
 
       expect(current_path).to eq(edit_admin_competency_path(competency))
 

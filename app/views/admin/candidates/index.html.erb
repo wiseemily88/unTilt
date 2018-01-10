@@ -1,13 +1,11 @@
-<h1> Here are the Current Candidate </h1>
-
-
+<div class="container">
+<h4> Here are the Current Candidate </h4>
   <% @candidates.each do |candidate| %>
-  <ul>
-    <li> <%= link_to "Show Details", admin_candidate_path(candidate.id) %> </li>
-    <li> candidate's first_name: <%= candidate.first_name %> </li>
-    <li> candidate's last_name: <%= candidate.last_name %> </li>
-    <li> Role: <%= candidate.target_role %> </li>
+  <ul class="list-group">
+    <li class="list-group-item"><%= link_to "Show Details", admin_candidate_path(candidate.id) %> </li>
+    <li class="list-group-item"> Candidate: <%= candidate.first_name %> <%= candidate.last_name %></li>
+    <li class="list-group-item"> Role: <%= candidate.target_role %> </li> <br>
     </ul>
   <%end %>
-
   <a href="/admin/candidates/new" class="btn btn-primary btn-lg primary" role="button" aria-disabled="true">Create a New Candidate</a>
+</div>

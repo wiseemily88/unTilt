@@ -1,16 +1,15 @@
-<h1> Here are the Open and Completed Interviews </h1>
-
-
+<div class="container">
+<h4> Here are the Open and Completed Interviews </h4>
   <% @interviews.each do |interview| %>
-  <ul>
-    <li> <%= link_to "Show Details", admin_interview_path(interview.id) %> </li>
-    <li> candidate's first_name: <%= interview.candidate.first_name %> </li>
-    <li> candidate's last_name: <%= interview.candidate.last_name %> </li>
-    <li> Date: <%= interview.date %> </li>
-    <li> Role: <%= interview.candidate.target_role %> </li>
-    <li> Interviewer: <%= interview.user.first_name %> </li>
-    <li> Status: <%= interview.status %> </li>
+    <ul class="list-group">
+    <li class="list-group-item"> <%= link_to "Show Details", admin_interview_path(interview.id) %> </li>
+    <li class="list-group-item"> Candidate: <%= interview.candidate.first_name %> <%= interview.candidate.last_name %></li>
+    <li class="list-group-item"> Date: <%= interview.date %> </li>
+    <li class="list-group-item"> Role: <%= interview.candidate.target_role %> </li>
+    <li class="list-group-item"> Interviewer: <%= interview.user.first_name %> </li>
+    <li class="list-group-item"> Status: <%= interview.status %> </li> <br>
     </ul>
   <%end %>
 
   <a href="/admin/interviews/new" class="btn btn-primary btn-lg primary" role="button" aria-disabled="true">Create a New Interview</a>
+</div>

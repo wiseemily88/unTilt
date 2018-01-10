@@ -21,12 +21,16 @@ class Admin::CompetenciesController <ApplicationController
   end
 
   def update
-    @competency = Competency.find(params[:id])
-    @competency = Competency.update(competency_params)
+    competency = Competency.find(params[:id])
+    competency.update(competency_params)
     redirect_to admin_dashboard_path
-
   end
 
+  def destroy
+    competency = Competency.find(params[:id])
+    competency.destroy
+    redirect_to admin_dashboard_path
+  end
 
   private
   def competency_params

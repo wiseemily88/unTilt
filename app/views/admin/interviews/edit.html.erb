@@ -1,21 +1,24 @@
 
+<div class="container">
 <%= form_for ([:admin, @interview]), :html => {:class => "form-horizontal center"} do |f| %>
-
 <div class="form-group">
   <%= f.label :date, "Interview Date:", class: "col-md-4 control-label" %>
   <div class="col-md-8">
     <%= f.date_field :date, class: "form-control" %>
   </div>
 </div>
-
-<div class="field">
+<div class="form-group">
   <%= f.label :Status, "Update the Status", class: "col-md-4 control-label" %>
+  <div class="col-md-8">
   <%= f.text_field :status, class: "form-control" %>
 </div>
-
-<div class="field">
-  <%= f.label :interview_id %>
+</div>
+<div class="form-group">
+  <%= f.label :interview_id, class: "col-md-4 control-label" %>
+    <div class="col-md-8">
   <%= f.select(:user_id,   @interviewers_options) %>
 </div>
-<%= f.submit "Submit", class: "btn btn-default btn-primary" %>
+</div>
+<%= f.submit "Submit", class: "btn  btn-primary btn-lg  btn-primary" %>
 <% end %>
+</div>

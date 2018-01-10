@@ -1,5 +1,5 @@
 
-
+<div class="container">
 <%= form_for ([:admin, @user]), :html => {:class => "form-horizontal center"} do |f| %>
 
       <div class="form-group">
@@ -31,16 +31,19 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :job_title, "Job_title:", class: "col-md-4 control-label" %>
+        <%= f.label :job_title, "Job Title:", class: "col-md-4 control-label" %>
         <div class="col-md-8">
           <%= f.text_field :job_title, class: "form-control" %>
         </div>
+      </div>
 
         <div class="form-group">
           <%= f.label :department, "Department:", class: "col-md-4 control-label" %>
           <div class="col-md-8">
             <%= f.text_field :department, class: "form-control" %>
           </div>
+        </div>
 
-      <%= f.submit "Submit", class: "btn btn-default btn-primary" %>
+      <%= f.submit "Submit", class: "btn btn-primary btn-lg primary" %>
  <% end %>
+</div>

@@ -1,11 +1,18 @@
-<h2> Details for <%=@interview.date%> </h2>
-<h4> Candidate <%=@interview.candidate.first_name%> </h4>
-<h4> Interviewer <%=@interview.user.first_name%> </h4>
-<h4> Status <%=@interview.status%> </h4>
+<div class="container">
+<div class="card">
+<h4 class="card-title"> Details for <%=@interview.date%> </h4>
+<h6 class="card-text"> Candidate: <%=@interview.candidate.first_name%> <%=@interview.candidate.last_name%></h6>
+<h6 class="card-text"> Interviewer: <%=@interview.user.first_name%> <%=@interview.user.last_name%></h6>
+<h6 class="card-text"> Status: <%=@interview.status%> </p>
 <p><%= link_to "Edit", edit_admin_interview_path(@interview) %></p>
-  <ul>
+<div class="card-body">
+  <h5> Target Role and Competencies </h5>
+  <p class="card-text"> Role: <%=@interview.candidate.target_role%> </p>
  <%@interview.competencies.each do |competency| %>
- <li> Competency: <%=competency.name%> </li>
- <li> Description: <%=competency.description%> </li> <br>
+  <ul class="list-group">
+ <li class="list-group-item"> Competency: <%=competency.name%> </li>
+ <li class="list-group-item"> Description: <%=competency.description%> </li> <br>
  <%end %>
 </ul>
+</div>
+</div>
