@@ -1,6 +1,8 @@
 class Interview < ApplicationRecord
   has_many :interview_competencies
   has_many :competencies, through: :interview_competencies
+  has_many :interview_questions
+  has_many :questions, through: :interview_questions
   belongs_to :user
   belongs_to :candidate
   accepts_nested_attributes_for :interview_competencies, allow_destroy: true
