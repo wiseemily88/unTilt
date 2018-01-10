@@ -1,4 +1,4 @@
 class InterviewQuestion < ApplicationRecord
   belongs_to :interview
-  belongs_to :
+  belongs_to :question
 end
