@@ -27,21 +27,33 @@
   <h6> Select up to 3 competency and a question for the interview. </h6>
   <div class="checkbox" id="competencies_id">
     <ul>
-    <% hidden_field_tag 'interview[competency_ids][]', nil %>
-  <% @competencies.each do |competency| %>
-      <li>
-        <%= check_box_tag 'interview[competency_ids][]', competency.id, @interview.competency_ids.include?(competency.id), id: competency.name%>
-        <%= label_tag :competency_id, competency.name%>
+    <!-- <% hidden_field_tag 'interview[competency_attributes][]', nil %> -->
+  <% @competencies.each_with_index do |competency, index| %>
 
-        <%= hidden_field_tag "interview[competency][question_ids][]", nil %>
-        <% competency.questions.each do |question| %>
+      <li>
+        <%= f.fields_for :competencies, index: index do |fm| %>
+        <%= fm.hidden_field :name, value: competency.name %>
+        <%= fm.label :name, value: competency.name %>
+        <%= fm.check_box :id, {}, competency.id %>
+        <!-- <%= check_box_tag 'interview[competency_attributes][]', competency.id, @interview.competency_ids.include?(competency.id), id: competency.name%> -->
+        <!-- <%= label_tag :id, competency.name%> -->
+
+        <!-- <%= hidden_field_tag "interview[competency_attributes][question_attributes][]", nil %> -->
+        <% competency.questions.each_with_index do |question, another_index| %>
+
+         <%= fm.fields_for :questions, index: another_index do |ft| %>
         <ul>
-          <%= check_box_tag 'interview[competency][question_ids][]', question.id,  id: question.question%>
-          <%= label_tag :question_id, question.question%>
+        <%= ft.hidden_field :question, value: question.question %>
+          <%= ft.label :question, value: question.question %>
+         <%= ft.check_box :id, {}, question.id %>
+          <!-- <%= check_box_tag 'interview[competency_attributes][question_attributes][]', question.id, competency.question_ids.include?(question.id),  id: question.question%> -->
+          <!-- <%= label_tag :question_id, question.question%> -->
         </ul>
+          <%end%>
           <%end%>
       </li>
   <% end %>
+  <%end%>
 </ul>
 </div>
 </div>

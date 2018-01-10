@@ -8,7 +8,7 @@ class Interview < ApplicationRecord
   accepts_nested_attributes_for :interview_competencies, allow_destroy: true
   accepts_nested_attributes_for :interview_questions, allow_destroy: true
   accepts_nested_attributes_for :competencies, allow_destroy: true
-  accepts_nested_attributes_for :questions
+  accepts_nested_attributes_for :questions, allow_destroy: true
 
   enum status: ["open", "completed"]
 
