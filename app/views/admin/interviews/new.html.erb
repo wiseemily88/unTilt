@@ -9,16 +9,22 @@
   </div>
 </div>
 
+<div class="form-group">
 <div class="field">
-  <%= f.label :candidate_id %>
+  <%= f.label :candidate_id , class: "col-md-4 control-label"%>
   <%= f.select(:candidate_id,   @candidates_options) %>
 </div>
-
-<div class="field">
-  <%= f.label :interview_id %>
-  <%= f.select(:user_id,   @interviewers_options) %>
 </div>
 
+<div class="form-group">
+<div class="field">
+  <%= f.label :interview_id , class: "col-md-4 control-label"%>
+  <%= f.select(:user_id,   @interviewers_options) %>
+</div>
+</div>
+
+<div class="form-group">
+  <h6> Select up to 3 competency and a question for the interview. </h6>
   <div class="checkbox" id="competencies_id">
     <ul>
     <% hidden_field_tag 'interview[competency_ids][]', nil %>
@@ -26,11 +32,21 @@
       <li>
         <%= check_box_tag 'interview[competency_ids][]', competency.id, @interview.competency_ids.include?(competency.id), id: competency.name%>
         <%= label_tag :competency_id, competency.name%>
+
+        <%= hidden_field_tag "interview[competency][question_ids][]", nil %>
+        <% competency.questions.each do |question| %>
+        <ul>
+          <%= check_box_tag 'interview[competency][question_ids][]', question.id,  id: question.question%>
+          <%= label_tag :question_id, question.question%>
+        </ul>
+          <%end%>
       </li>
   <% end %>
 </ul>
 </div>
-
+</div>
+<div class="form-group">
 <%= f.submit "Submit", class: "btn  btn-primary btn-lg  btn-primary" %>
 <% end %>
+</div>
 </div>

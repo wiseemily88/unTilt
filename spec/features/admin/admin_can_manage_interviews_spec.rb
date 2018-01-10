@@ -41,6 +41,8 @@ RSpec.describe "As a registered HR Admin user" do
       candidate = create(:candidate)
       interviewers = create_list(:user,5)
       competencies = create_list(:competency, 4)
+      question = create(:question, competency: competencies.last)
+
 
       interviewer_1_name = interviewers.last.first_name
       candidate_name = candidate.first_name
@@ -49,6 +51,9 @@ RSpec.describe "As a registered HR Admin user" do
       competency_2 = competencies.first.name
       competency_3 = competencies[1].name
       competency_4 = competencies[2].name
+
+
+
 
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
@@ -70,6 +75,7 @@ RSpec.describe "As a registered HR Admin user" do
       find("input[type='checkbox'][id='#{competency_2}']").set(true)
       find("input[type='checkbox'][id='#{competency_3}']").set(true)
       find("input[type='checkbox'][id='#{competency_4}']").set(true)
+      find("input[type='checkbox'][name='competency[questions_ids][]'][id='competency_question_ids']").set(true)
     end
 
 

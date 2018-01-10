@@ -16,11 +16,15 @@
   <div class="col-sm-3">
     <p> Competency Name: </p>
     <p> Competency Description: </p>
+    <p> Interview Question: </p>
   </div>
   <%@interview.competencies.each do |competency| %>
   <div class="col-sm-3">
     <p><%= competency.name %></p>
     <p><%= competency.description %></p>
+      <% competency.questions  do |question| %>
+      <p><%= question.question %> </p>
+      <%end%>
   </div>
   <%end%>
 </div>
