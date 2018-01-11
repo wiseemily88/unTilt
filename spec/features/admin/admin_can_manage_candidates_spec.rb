@@ -33,8 +33,8 @@ RSpec.describe "As a registered HR Admin user" do
       expect(page).to have_content("#{candidate.first_name}")
       expect(page).to have_content("#{candidate.last_name}")
       expect(page).to have_content("#{candidate.target_role}")
-      expect(page).to have_content("#{candidate.interviews.first.date}")
-      expect(page).to have_content("#{candidate.interviews.first.status}")
+      expect(page).to have_content("#{candidate.interviews.first.date.strftime('%b. %d, %Y')}")
+      expect(page).to have_content("#{candidate.interviews.first.status.capitalize}")
       expect(page).to have_content("#{candidate.interviews.first.user.first_name}")
 
     end
