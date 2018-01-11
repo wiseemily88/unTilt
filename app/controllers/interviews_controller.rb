@@ -1,7 +1,7 @@
 class InterviewsController < ApplicationController
 
   def index
-    @interviews = Interview.open
+    @interviews = current_user.interviews.open
 
   end
 
@@ -14,7 +14,6 @@ class InterviewsController < ApplicationController
   end
 
   def update
-
     interview = Interview.find(params[:id])
     interview.update(interview_params)
     interview.status = 1

@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: unTilt_production
-  username: unTilt
-  password: <%= ENV['UNTILT_DATABASE_PASSWORD'] %>
