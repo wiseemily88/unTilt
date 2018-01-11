@@ -43,7 +43,6 @@ RSpec.describe "As a registered HR Admin user" do
       competencies = create_list(:competency, 4)
       question = create(:question, competency: competencies.last)
 
-
       interviewer_1_name = interviewers.last.first_name
       candidate_name = candidate.first_name
 
@@ -51,9 +50,6 @@ RSpec.describe "As a registered HR Admin user" do
       competency_2 = competencies.first.name
       competency_3 = competencies[1].name
       competency_4 = competencies[2].name
-
-
-
 
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
@@ -75,7 +71,7 @@ RSpec.describe "As a registered HR Admin user" do
       find("input[type='checkbox'][id='#{competency_2}']").set(true)
       find("input[type='checkbox'][id='#{competency_3}']").set(true)
       find("input[type='checkbox'][id='#{competency_4}']").set(true)
-      find("input[type='checkbox'][name='competency[questions_ids][]'][id='competency_question_ids']").set(true)
+      find("input[type='checkbox'][id='#{question.id}']").set(true)
     end
 
 
@@ -84,7 +80,7 @@ RSpec.describe "As a registered HR Admin user" do
       new_interview = Interview.last
 
       expect(current_path).to eq(admin_interviews_path)
-      expect(page).to have_content(new_interview.date)
+      expect(page).to have_content(new_interview.date.strftime('%b. %d, %Y'))
       expect(new_interview.status).to eq("open")
 
     end
@@ -108,8 +104,8 @@ RSpec.describe "As a registered HR Admin user" do
       click_on 'Submit'
 
       expect(current_path).to eq(admin_interviews_path)
-      expect(page).to have_content("2018-04-02")
-      expect(page).to have_content("completed")
+      expect(page).to have_content("Apr. 02, 2018")
+      expect(page).to have_content("Completed")
     end
 
   end
