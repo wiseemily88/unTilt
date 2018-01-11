@@ -1,5 +1,5 @@
 class Admin::CompetenciesController <ApplicationController
-
+  before_action :require_admin
   def new
     @competency = Competency.new
   end

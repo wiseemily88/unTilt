@@ -1,2 +1,4 @@
 You have a new interview scheduled <%= @user.first_name.capitalize %> <%= @user.last_name.capitalize %> .
 Follow the link to sign in and retrieve the form to complete.
+Link to sign into the applicaiton: <%= link_to "Login", login_path %>
+Link to new interview form: <%= link_to "Open Interview", edit_interview_path(@interview) %>

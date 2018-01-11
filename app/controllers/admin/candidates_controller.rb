@@ -1,4 +1,5 @@
 class Admin::CandidatesController <ApplicationController
+  before_action :require_admin
 
   def index
     @candidates = Candidate.all

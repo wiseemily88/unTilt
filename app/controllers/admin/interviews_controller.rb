@@ -1,4 +1,5 @@
 class Admin::InterviewsController <ApplicationController
+  before_action :require_admin
   def index
     @interviews = Interview.all
   end

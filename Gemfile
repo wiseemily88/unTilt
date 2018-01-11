@@ -18,6 +18,8 @@ gem 'bootstrap', '~> 4.0.0.beta'
 gem 'jquery-rails'
 gem 'figaro'
 gem 'faker'
+gem 'newrelic_rpm'
+gem 'redis-rails'
 
 
 group :development, :test do
@@ -30,6 +32,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'launchy'
+  gem 'bullet'
 end
 
 group :development do

@@ -13,6 +13,11 @@
 <div class="wrapper">
       <%= render 'layouts/navigation/layout'%>
 <div class="content-wrapper">
+
+  <% flash.each do |type, message| %>
+      <%= content_tag :div, sanitize(message), class: [type, "alert", "alert-#{type}"] %>
+    <% end %>
+
           <%= yield %>
       </div>
       <%= render 'layouts/navigation/footer' %>
