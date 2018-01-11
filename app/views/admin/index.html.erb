@@ -17,15 +17,15 @@
       </ul>
     </div>
 
-  <h4 class="card-title">Welcome Admin, <%= current_user.first_name %></h4>
-  <h5> Here are all the current competencies: </h5>
+  <h4 class="card-title">Welcome, <%= current_user.first_name %></h4>
+  <h5> Company's Core Competencies: </h5>
 
     <% @competencies.each do |competency| %>
     <div class="card-deck">
     <div class= "card p-3 text-left">
         <div class="card-block">
-          <h6 class="card-title"> Name: <%=competency.name%></h6>
-          <h6 class="card-text">Description: <%=competency.description%> </h6>
+          <h6 class="card-title"> <strong>Name:</strong> <%=competency.name%></h6>
+          <h6 class="card-text"><strong>Description:</strong> <%=competency.description%> </h6>
       <a ><%= link_to "Edit", edit_admin_competency_path(competency) %></a>
       <a ><%= link_to "Delete", admin_competency_path(competency), method: :delete, data: { confirm: "Are you sure?" } %> </a><br>
       </div>

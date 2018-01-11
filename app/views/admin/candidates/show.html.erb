@@ -1,15 +1,15 @@
 <div class="container">
 <div class="card">
-<h4 class="card-title"> Candidate Name: <%=@candidate.first_name%> <%=@candidate.last_name%></h4>
-<p class="card-text"> Target Role <%=@candidate.target_role%> </p>
+<h4 class="card-title"> <strong>Candidate Name: </strong> <%=@candidate.first_name%> <%=@candidate.last_name%></h4>
+<h5 class="card-text"> <strong>Target Role </strong> <%=@candidate.target_role%> </h5>
 
   <div class="card-body">
-<h6> All Interviews </h6>
+<h5> All Interviews: </h5>
 <% @candidate.interviews.map do |interview| %>
   <ul class="list-group">
-  <li class="list-group-item"> Date: <%=interview.date%> </li>
-  <li class="list-group-item"> Status: <%=interview.status%> </li>
-  <li class="list-group-item"> Interviewers: <%=interview.user.first_name%> <%=interview.user.last_name%></li> <br>
+  <li class="list-group-item"> <strong>Interview Date: </strong><%=interview.date.strftime('%b. %d, %Y')%> </li>
+  <li class="list-group-item"> <strong>Status: </strong><%=interview.status.capitalize%> </li>
+  <li class="list-group-item"> <strong>Interviewers: </strong><%=interview.user.first_name%> <%=interview.user.last_name%></li> <br>
 </ul>
 <%end%>
 </div>

@@ -1,11 +1,11 @@
 <div class="container">
-<h4> Here are the current Availble Interviewers </h4>
+<h4> Availble Interviewers </h4>
   <% @users.each do |user| %>
   <ul class="list-group">
-    <li class="list-group-item"> Name: <%= user.first_name %> <%= user.last_name %> </li>
-    <li class="list-group-item"> Email: <%= link_to "#{user.email}", admin_user_path(user) %> </li>
-    <li class="list-group-item"> Job Title: <%= user.job_title %> </li>
-    <li class="list-group-item"> Department: <%= user.department %> </li><br>
+    <li class="list-group-item"> <strong>Name:</strong> <%= user.first_name %> <%= user.last_name %> </li>
+    <li class="list-group-item"> <strong>Email:</strong> <%= link_to "#{user.email}", admin_user_path(user) %> </li>
+    <li class="list-group-item"><strong> Job Title:</strong> <%= user.job_title %> </li>
+    <li class="list-group-item"> <strong>Department: </strong><%= user.department %> </li><br>
     </ul>
   <%end %>
   <a href="/admin/users/new" class="btn btn-primary btn-lg primary" role="button" aria-disabled="true">Add a New Interviewer</a>

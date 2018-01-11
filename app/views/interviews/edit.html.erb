@@ -1,22 +1,23 @@
 
 <div class="container">
-    <h4> Please Update the Interview </h4>
+    <h4> Complete the Interview Form:</h4>
     <div class="row">
       <div class="col-sm-6">
-        <h6 class="card-text">  Date: <%=@interview.date %> </h6>
-        <h6 class="card-text">  First Name: <%=@interview.candidate.first_name %> </h6>
-        <h6 class="card-text">  Last Name: <%=@interview.candidate.last_name %> </h6>
-        <h6 class="card-text">  Target Role: <%=@interview.candidate.target_role %> </h6><br>
+        <div class="edit-form-candidate-info">
+        <h6 class="card-text"> <strong> Date:</strong> <%=@interview.date.strftime('%b. %d, %Y') %> </h6>
+        <h6 class="card-text"> <strong> Candidate Name:</strong> <%=@interview.candidate.first_name %> <%=@interview.candidate.last_name %></h6>
+        <h6 class="card-text"> <strong> Target Role:</strong> <%=@interview.candidate.target_role %> </h6><br>
       </div>
+    </div>
     </div>
 </div>
 
 <div class="container">
   <div class="row">
   <div class="col-sm-3">
-    <p> Competency Name: </p>
-    <p> Competency Description: </p>
-    <p> Interview Question: </p>
+    <p> <strong> Competency Name: </strong></p>
+    <p> <strong>Competency Description:</strong> </p>
+    <p> <strong> Interview Question: </strong></p>
   </div>
   <%@interview.competencies.each do |competency| %>
   <div class="col-sm-3">
@@ -33,7 +34,7 @@
   <%= form_for ([ @interview]), :html => {:class => "form-horizontal center"} do |f| %>
     <div class="row">
       <div class="col-sm-3">
-        <p> Competency Score: </p>
+        <p> <strong>Competency Score:</strong> </p>
       </div>
       <%= f.fields_for :interview_competencies do |builder| %>
         <div class="col-sm-3">

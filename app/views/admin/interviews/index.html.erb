@@ -1,13 +1,13 @@
 <div class="container">
-<h4> Here are the Open and Completed Interviews </h4>
+<h4> All Open and Completed Interviews: </h4>
   <% @interviews.each do |interview| %>
     <ul class="list-group">
     <li class="list-group-item"> <%= link_to "Show Details", admin_interview_path(interview.id) %> </li>
-    <li class="list-group-item"> Candidate: <%= interview.candidate.first_name %> <%= interview.candidate.last_name %></li>
-    <li class="list-group-item"> Date: <%= interview.date %> </li>
-    <li class="list-group-item"> Role: <%= interview.candidate.target_role %> </li>
-    <li class="list-group-item"> Interviewer: <%= interview.user.first_name %> </li>
-    <li class="list-group-item"> Status: <%= interview.status %> </li> <br>
+    <li class="list-group-item"> <strong>Candidate:</strong> <%= interview.candidate.first_name %> <%= interview.candidate.last_name %></li>
+    <li class="list-group-item"> <strong>Date: </strong><%= interview.date.strftime('%b. %d, %Y') %> </li>
+    <li class="list-group-item"> <strong>Role:</strong> <%= interview.candidate.target_role %> </li>
+    <li class="list-group-item"> <strong>Interviewer:</strong> <%= interview.user.first_name %> <%= interview.user.last_name %></li>
+    <li class="list-group-item"> <strong>Status: </strong> <%= interview.status.capitalize %> </li> <br>
     </ul>
   <%end %>
 

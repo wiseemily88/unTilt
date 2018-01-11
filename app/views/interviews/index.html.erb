@@ -1,12 +1,12 @@
 
 <div class="container">
-<h3> Here are your upcoming Interviews </h3>
+<h4> Upcoming Interviews: </h4>
   <% @interviews.each do |interview| %>
   <ul class="list-group">
     <li class="list-group-item">  <%= link_to "Show Details for #{interview.id}", edit_interview_path(interview.id) %> </li>
-    <li class="list-group-item"> Candidate's Name: <%= interview.candidate.first_name %> <%= interview.candidate.last_name %> </li>
-    <li class="list-group-item"> Date: <%= interview.date %> </li>
-    <li class="list-group-item"> Role: <%= interview.candidate.target_role %> </li>
+    <li class="list-group-item"> <strong>Candidate's Name:</strong> <%= interview.candidate.first_name %> <%= interview.candidate.last_name %> </li>
+    <li class="list-group-item"> <strong>Date:</strong> <%= interview.date.strftime('%b. %d, %Y') %> </li>
+    <li class="list-group-item"> <strong>Role: </strong><%= interview.candidate.target_role %> </li> <br>
     </ul>
   <%end %>
 </div>

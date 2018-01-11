@@ -1,17 +1,17 @@
 <div class="container">
 <div class="card">
-<h4 class="card-title"> Details for <%=@interview.date%> </h4>
-<h6 class="card-text"> Candidate: <%=@interview.candidate.first_name%> <%=@interview.candidate.last_name%></h6>
-<h6 class="card-text"> Interviewer: <%=@interview.user.first_name%> <%=@interview.user.last_name%></h6>
-<h6 class="card-text"> Status: <%=@interview.status%> </p>
-<p><%= link_to "Edit", edit_admin_interview_path(@interview) %></p>
+<h4 class="card-title"> Details for the Interview scheduled on <%=@interview.date.strftime('%b. %d, %Y') %> </h4>
+<h6 class="card-text"> <strong>Candidate:</strong> <%=@interview.candidate.first_name%> <%=@interview.candidate.last_name%></h6>
+<h6 class="card-text"> <strong>Interviewer:</strong> <%=@interview.user.first_name%> <%=@interview.user.last_name%></h6>
+<h6 class="card-text"> <strong>Status: </strong> <%=@interview.status.capitalize%> </p>
+<p><%= link_to "Edit", edit_admin_interview_path(@interview), class: "btn btn-primary" %></p>
 <div class="card-body">
   <h5> Target Role and Competencies </h5>
-  <p class="card-text"> Role: <%=@interview.candidate.target_role%> </p>
+  <p class="card-text"> <strong>Role:</strong> <%=@interview.candidate.target_role%> </p>
  <%@interview.competencies.each do |competency| %>
   <ul class="list-group">
- <li class="list-group-item"> Competency: <%=competency.name%> </li>
- <li class="list-group-item"> Description: <%=competency.description%> </li> <br>
+ <li class="list-group-item"> <strong>Competency:</strong> <%=competency.name%> </li>
+ <li class="list-group-item"> <strong>Description: </strong><%=competency.description%> </li> <br>
  <%end %>
 </ul>
 </div>
