@@ -1,7 +1,8 @@
 class Admin::InterviewsController <ApplicationController
   before_action :require_admin
   def index
-    @interviews = Interview.all
+    @interviews = Interview.includes(:user, :candidate)
+
   end
 
   def show
@@ -11,7 +12,7 @@ class Admin::InterviewsController <ApplicationController
   def new
     @interviewers_options = User.all.map{ |u| [ u.first_name, u.id ] }
     @candidates_options = Candidate.all.map{ |u| [ u.first_name, u.id ] }
-    @competencies = Competency.all
+    @competencies = Competency.includes(:questions)
     @interview = Interview.new
     competency = @interview.competencies.build
     competency.questions.build
