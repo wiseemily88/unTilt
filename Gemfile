@@ -17,6 +17,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'jquery-rails'
 gem 'figaro'
+gem 'faker'
 
 
 group :development, :test do
@@ -29,7 +30,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'launchy'
-  gem 'faker'
 end
 
 group :development do

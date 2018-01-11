@@ -1,4 +1,5 @@
 class Seed
+  require 'faker'
   def self.run
     new.run
   end
