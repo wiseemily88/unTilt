@@ -32,7 +32,7 @@ RSpec.describe "As a registered HR Admin user" do
       expect(page).to have_content("#{interview.candidate.first_name}")
       expect(page).to have_content("#{interview.user.first_name}")
       expect(page).to have_content("#{competencies.first.name}")
-      expect(page).to have_content("#{interview.status}")
+      expect(page).to have_content("#{interview.status.capitalize}")
 
 
     end
