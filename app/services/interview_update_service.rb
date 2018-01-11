@@ -6,3 +6,4 @@ def update_joins_table
     interview_score.competency_score = score_params[:interview_competencies_attributes][interview_competency][:competency_score]
   end
 end
+end
