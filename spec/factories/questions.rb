@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :question do
-    competencies nil
+    question { Faker::ChuckNorris.fact }
+    competency
   end
 end

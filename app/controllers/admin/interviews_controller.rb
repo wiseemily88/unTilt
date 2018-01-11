@@ -12,9 +12,12 @@ class Admin::InterviewsController <ApplicationController
     @candidates_options = Candidate.all.map{ |u| [ u.first_name, u.id ] }
     @competencies = Competency.all
     @interview = Interview.new
+    competency = @interview.competencies.build
+    competency.questions.build
   end
 
   def create
+
     interview = Interview.new(interview_params)
     interview.status = 0
     interviewer = User.find_by(params[:user_id])
@@ -45,8 +48,10 @@ class Admin::InterviewsController <ApplicationController
 
   private
     def interview_params
-      params.require(:interview).permit(:date, :user_id, :candidate_id, :status, :competency_ids => [])
+      params.require(:interview).permit(:date, :user_id, :candidate_id, :status, :competencies => [:id, :name, :questions => [:id]])
     end
+
+
 
 
 end
