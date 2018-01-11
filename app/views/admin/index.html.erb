@@ -34,6 +34,6 @@
     <%end%>
     <div class="card-footer">
   <%= button_to "Create a New Competency", new_admin_competency_path, method: :get, class: "btn btn-primary"%><br>
-  <%= button_to "Logout", logout_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary"%>
+  <%= button_to "Logout", logout_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-primary", id:'admin-logout'%>
 </div>
 </div>

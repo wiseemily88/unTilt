@@ -17,7 +17,7 @@ RSpec.describe "As a registered HR Admin user" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
     visit admin_dashboard_path
-    click_on 'Logout'
+    click_button("admin-logout")
 
     expect(current_path).to eq(root_path)
 
