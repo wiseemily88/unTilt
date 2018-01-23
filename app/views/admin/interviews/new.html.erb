@@ -30,7 +30,7 @@
   <% @competencies.each_with_index do |competency, index| %>
       <li>
         <%= f.fields_for :competencies, index: index do |fm| %>
-        <%= fm.hidden_field :name, value: competency.name %>
+        <%= fm.hidden_field :name, value: competency.name, id: "#{competency.name}"  %>
         <%= fm.label :name, value: competency.name, id: "#{competency.name}"%>
         <%= fm.check_box :id, {}, competency.id %>
         <% competency.questions.each_with_index do |question, another_index| %>
